@@ -5,15 +5,17 @@ import Footer from '../../components/Footer';
 
 const Home = () => {
     return (
-        <Header />
+        <>
+            <Header />
 
-        <div className="container">
-        
-            <h1>Home</h1>
+            <div className="container">
 
-        </div>
-        
-        <Footer />
+                <h1>Home</h1>
+
+            </div>
+
+            <Footer />
+        </>
     )
 }
 

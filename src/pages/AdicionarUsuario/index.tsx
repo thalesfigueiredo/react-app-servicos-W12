@@ -1,21 +1,27 @@
 import React from 'react';
+import { FiKey, FiUser, FiMail } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
-import { FiKey, FiMail } from 'react-icons/fi';
 
-import './styles.css';
-
-const Login = () => {
+const AdicionarUsuario = () => {
     return (
         <div className="container">
             <div className="row justify-content-center login-mg">
                 <div className="col-lg-5 col-md-7 col-sm-10">
                     <div className="card">
                         <div className="card-body">
-                            <h2 className="text-primary text-center mt-3 mb-4">Login</h2>
+                            <h2 className="text-primary text-center mt-3 mb-4">Novo Usuário</h2>
 
                             <form>
 
                                 <div className="form-row align-items-center">
+                                    <label className="sr-only" htmlFor="inlineFormInputGroup">Nome</label>
+                                    <div className="input-group mb-2">
+                                        <div className="input-group-prepend">
+                                            <div className="input-group-text"><FiUser /></div>
+                                        </div>
+                                        <input type="text" className="form-control" id="" placeholder="Nome" />
+                                    </div>
+
                                     <label className="sr-only" htmlFor="inlineFormInputGroup">E-mail</label>
                                     <div className="input-group mb-2">
                                         <div className="input-group-prepend">
@@ -31,19 +37,15 @@ const Login = () => {
                                         </div>
                                         <input type="password" className="form-control" id="" placeholder="Senha" />
                                     </div>
-                                    
-                                    <div className="input-group ml-3 mb-2 col-sm-7 col-12 text-sm-left text-center">
-                                        <input className="form-check-input" type="checkbox" id="autoSizingCheck" />
-                                        <label className="form-check-label" htmlFor="autoSizingCheck">Lembrar senha</label>
-                                    </div>
 
                                     <div className="input-group mb-3">
-                                        <button type="submit" className="btn btn-lg btn-primary btn-block">Logar</button>
+                                        <button type="submit" className="btn btn-lg btn-primary btn-block">Criar Usuário</button>
                                     </div>
 
-                                    <div className="text-center mb-2">
-                                        <Link to="/novo-usuario">Criar um usuário</Link>
+                                    <div className="input-group mb-2">
+                                        <Link to="/">Voltar a tela de login</Link>
                                     </div>
+
                                 </div>
 
                             </form>
@@ -56,4 +58,4 @@ const Login = () => {
     )
 }
 
-export default Login;
+export default AdicionarUsuario;
