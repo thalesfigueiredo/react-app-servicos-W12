@@ -1,8 +1,46 @@
-import React from 'react';
+import React, { useState, ChangeEvent, FormEvent } from 'react';
 import { FiKey, FiUser, FiMail } from 'react-icons/fi';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+
+import api from '../../services/api';
 
 const AdicionarUsuario = () => {
+
+    const [formData, setFormData] = useState({
+        nome: '',
+        email: '',
+        senha: '',
+    });
+
+    const history = useHistory();
+
+    function handleInputChange(event: ChangeEvent<HTMLInputElement>) {
+        const { name, value } = event.target;
+
+        setFormData({
+            ...formData, [name]: value
+        })
+    }
+
+    async function handleSubmit(event: FormEvent) {
+        event.preventDefault();
+
+        const { nome, email, senha } = formData;
+
+        const infos = {
+            nome,
+            email,
+            senha,
+        };
+
+        console.log(infos);
+
+        // await api.post('rota', infos);
+
+        // alert('Usuário inserido com sucesso no App!');
+
+        // history.push('/');
+    }
     return (
         <div className="container">
             <div className="row justify-content-center login-mg">
@@ -11,7 +49,7 @@ const AdicionarUsuario = () => {
                         <div className="card-body">
                             <h2 className="text-primary text-center mt-3 mb-4">Novo Usuário</h2>
 
-                            <form>
+                            <form onSubmit={handleSubmit}>
 
                                 <div className="form-row align-items-center">
                                     <label className="sr-only" htmlFor="inlineFormInputGroup">Nome</label>
@@ -19,7 +57,7 @@ const AdicionarUsuario = () => {
                                         <div className="input-group-prepend">
                                             <div className="input-group-text"><FiUser /></div>
                                         </div>
-                                        <input type="text" className="form-control" id="" placeholder="Nome" />
+                                        <input type="text" className="form-control" name="nome" placeholder="Nome" onChange={handleInputChange} />
                                     </div>
 
                                     <label className="sr-only" htmlFor="inlineFormInputGroup">E-mail</label>
@@ -27,7 +65,7 @@ const AdicionarUsuario = () => {
                                         <div className="input-group-prepend">
                                             <div className="input-group-text"><FiMail /></div>
                                         </div>
-                                        <input type="text" className="form-control" id="" placeholder="E-mail" />
+                                        <input type="text" className="form-control" name="email" placeholder="E-mail" onChange={handleInputChange} />
                                     </div>
                                     
                                     <label className="sr-only" htmlFor="inlineFormInputGroup">Senha</label>
@@ -35,7 +73,7 @@ const AdicionarUsuario = () => {
                                         <div className="input-group-prepend">
                                             <div className="input-group-text"><FiKey /></div>
                                         </div>
-                                        <input type="password" className="form-control" id="" placeholder="Senha" />
+                                        <input type="password" className="form-control" name="senha" placeholder="Senha" onChange={handleInputChange} />
                                     </div>
 
                                     <div className="input-group mb-3">

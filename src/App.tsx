@@ -11,4 +11,4 @@ function App() {
 
 export default App;
 
-// video tempo 58min53seg
+// video tempo 1h40min53seg

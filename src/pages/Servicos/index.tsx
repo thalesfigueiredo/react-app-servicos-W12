@@ -1,10 +1,28 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import api from '../../services/api';
 
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 
+interface Servico {
+    titulo: string;
+    descricao: string;
+    // categoria: xxx;
+    data: Date;
+    status: boolean;
+}
+
 const Servicos = () => {
+
+    const [servicos, setServicos] = useState<Servico[]>([]);
+        useEffect(() => {
+            api.get('servicos').then(response => {
+                setServicos(response.data);
+            });
+        }, 
+    []);
+
     return (
         <>
         <Header />
@@ -25,20 +43,16 @@ const Servicos = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>Otto</td>
-                        <td><Link to="#">Editar</Link> / <Link to="#">Excluir</Link></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>Thornton</td>
-                        <td><Link to="#">Editar</Link> / <Link to="#">Excluir</Link></td>
-                    </tr>
+                    {servicos.map(servico => (
+                        // <tr key={servico.id}>
+                        <tr>
+                            <th scope="row">{servico.titulo}</th>
+                            <td>{servico.descricao}</td>
+                            <td>{servico.data}</td>
+                            <td>{servico.status}</td>
+                            <td><Link to="#">Editar</Link> / <Link to="#">Excluir</Link></td>
+                        </tr>
+                    ))}
                 </tbody>
             </table>
 

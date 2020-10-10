@@ -2,9 +2,20 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { FiKey, FiMail } from 'react-icons/fi';
 
+import * as loginService from '../../services/login/service';
+
 import './styles.css';
 
 const Login = () => {
+    function submitForm () {
+        //console.log('submit');
+        //useState para salvar os valores dos inputs
+        // loginService.getUsuarios().then(data => {
+        //     console.log(data);
+        // })
+        // loginService.doLogin(user, pass);
+    }
+
     return (
         <div className="container">
             <div className="row justify-content-center login-mg">
@@ -38,7 +49,7 @@ const Login = () => {
                                     </div>
 
                                     <div className="input-group mb-3">
-                                        <button type="submit" className="btn btn-lg btn-primary btn-block">Logar</button>
+                                        <button type="button" className="btn btn-lg btn-primary btn-block" onClick={submitForm}>Logar</button>
                                     </div>
 
                                     <div className="text-center mb-2">
